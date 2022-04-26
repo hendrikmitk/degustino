@@ -58,37 +58,64 @@
       <div
         class="rounded-b-xl bg-gusti-orange-medium py-2 text-center text-4xl text-gusti-orange-strong"
       >
-        Maroon
+        {{ randomShade.name }}
       </div>
     </div>
 
     <!-- Game board -->
     <div class="grid grid-cols-2 gap-6">
       <button
-        class="aspect-square rounded-xl bg-red-300 flex items-center justify-center"
+        v-for="(shade, index) in shades"
+        :key="shade.id"
+        @click="matchColor(shade)"
+        :class="`aspect-square rounded-xl flex items-center justify-center`"
+        :style="`background-color: ${shade.hex}`"
       >
-        <span class="text-gusti-orange-light text-8xl">A</span>
-      </button>
-      <button
-        class="aspect-square rounded-xl bg-red-600 flex items-center justify-center"
-      >
-        <span class="text-gusti-orange-light text-8xl">B</span>
-      </button>
-      <button
-        class="aspect-square rounded-xl bg-red-800 flex items-center justify-center"
-      >
-        <span class="text-gusti-orange-light text-8xl">C</span>
-      </button>
-      <button
-        class="aspect-square rounded-xl bg-red-400 flex items-center justify-center"
-      >
-        <span class="text-gusti-orange-light text-8xl">D</span>
+        <span class="text-gusti-orange-light text-8xl">{{
+          ['A', 'B', 'C', 'D'][index]
+        }}</span>
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { onBeforeMount, ref } from 'vue';
+import colors from './data/colors';
+import randomize from './functions/randomize';
+
+const colorRange = ref(null);
+const shades = ref(null);
+const randomShade = ref(null);
+
+const loadColors = () => {
+  colorRange.value = randomize(colors);
+  shades.value = randomize(colorRange.value.shades, 4);
+  if (!randomShade.value) {
+    randomShade.value = randomize(shades.value);
+    return;
+  }
+
+  let newRandomShade = randomize(shades.value);
+  while (randomShade.value.id === newRandomShade.id) {
+    newRandomShade = randomize(shades.value);
+  }
+  randomShade.value = newRandomShade;
+};
+
+const matchColor = (selectedColor) => {
+  if (selectedColor.id === randomShade.value.id) {
+    console.log('Nice! Good job 👍');
+  } else {
+    console.log(`Nope, that's ${selectedColor.name} ❌`);
+  }
+  loadColors();
+};
+
+onBeforeMount(() => {
+  loadColors();
+});
+
 const radius = 54;
 const circumference = radius * 2 * Math.PI;
 const percent = 75;
