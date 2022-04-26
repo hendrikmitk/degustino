@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex min-h-screen flex-col bg-gusti-orange-light px-6 py-10 font-raleway text-gusti-gray-strong space-y-6"
+    class="flex min-h-screen flex-col space-y-6 bg-gusti-orange-light px-6 py-10 font-raleway text-gusti-gray-strong"
   >
     <!-- Title -->
     <div class="flex flex-col space-y-4">
@@ -13,19 +13,19 @@
     <!-- Game stats -->
     <div>
       <div class="flex h-36 rounded-t-xl bg-white py-4">
-        <div class="flex-1 flex justify-center">
+        <div class="flex flex-1 justify-center">
           <div
-            class="h-28 w-28 inline-flex items-center justify-center overflow-hidden rounded-full"
+            class="inline-flex h-28 w-28 items-center justify-center overflow-hidden rounded-full"
           >
             <svg class="h-full w-full -rotate-90">
               <circle
-                class="text-gray-300 fill-transparent stroke-current stroke-[3]"
+                class="fill-transparent stroke-current stroke-[3] text-gray-300"
                 :r="radius"
                 :cx="radius + 2"
                 :cy="radius + 2"
               />
               <circle
-                class="text-gusti-orange-strong fill-transparent stroke-current stroke-[3]"
+                class="fill-transparent stroke-current stroke-[3] text-gusti-orange-strong"
                 :stroke-dasharray="circumference"
                 :stroke-dashoffset="
                   circumference - (percent / 100) * circumference
@@ -36,7 +36,7 @@
                 :cy="radius + 2"
               />
             </svg>
-            <div class="flex flex-col absolute items-center">
+            <div class="absolute flex flex-col items-center">
               <span class="text-xl">{{ percent }}%</span>
               <span>Time</span>
             </div>
@@ -68,10 +68,10 @@
         v-for="(shade, index) in shades"
         :key="shade.id"
         @click="matchColor(shade)"
-        :class="`aspect-square rounded-xl flex items-center justify-center`"
+        :class="`flex aspect-square items-center justify-center rounded-xl`"
         :style="`background-color: ${shade.hex}`"
       >
-        <span class="text-gusti-orange-light text-8xl">{{
+        <span class="text-8xl text-gusti-orange-light">{{
           ['A', 'B', 'C', 'D'][index]
         }}</span>
       </button>
