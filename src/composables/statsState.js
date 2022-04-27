@@ -2,7 +2,7 @@ import { readonly, ref } from 'vue';
 
 /* Global state */
 const round = ref(1);
-const wins = ref(0);
+const score = ref(0);
 
 export const useStatsState = () => {
   /* Local state */
@@ -12,17 +12,17 @@ export const useStatsState = () => {
 
   const winRound = () => {
     round.value += 1;
-    wins.value += 1;
+    score.value += 1;
   };
 
   const resetStats = () => {
     round.value = 1;
-    wins.value = 0;
+    score.value = 0;
   };
 
   return {
     round: readonly(round),
-    wins: readonly(wins),
+    score: readonly(score),
     loseRound,
     winRound,
     resetStats,

@@ -44,7 +44,7 @@
         </div>
         <div class="flex flex-1 flex-col">
           <div class="flex flex-1 items-start justify-between px-8 pt-5">
-            <span class="font-roboto text-3xl">{{ zeropad(wins, 2) }}</span>
+            <span class="font-roboto text-3xl">{{ zeropad(score, 2) }}</span>
             <span>Score</span>
           </div>
           <div
@@ -89,7 +89,7 @@ import randomize from './functions/randomize';
 import zeropad from './functions/zeropad';
 import { useStatsState } from './composables/statsState';
 
-const { round, wins, loseRound, winRound, resetStats } = useStatsState();
+const { round, score, loseRound, winRound, resetStats } = useStatsState();
 const colorRange = ref(null);
 const shades = ref(null);
 const randomShade = ref(null);
