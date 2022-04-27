@@ -63,19 +63,7 @@
     </div>
 
     <!-- Game board -->
-    <div class="grid grid-cols-2 gap-6">
-      <button
-        v-for="(shade, index) in shades"
-        :key="shade.id"
-        @click="matchColor(shade)"
-        :class="`flex aspect-square items-center justify-center rounded-xl`"
-        :style="`background-color: ${shade.hex}`"
-      >
-        <span class="text-8xl text-gusti-orange-light">{{
-          ['A', 'B', 'C', 'D'][index]
-        }}</span>
-      </button>
-    </div>
+    <GameBoard />
 
     <!-- Reset button -->
     <span class="text-center" @click="resetGame()"> Reset </span>
@@ -87,20 +75,10 @@ import { onBeforeMount } from 'vue';
 import zeropad from './functions/zeropad';
 import { useColorState } from './composables/colorState';
 import { useStatsState } from './composables/statsState';
+import GameBoard from './components/GameBoard.vue';
 
-const { color, shades, initColor } = useColorState();
-const { round, score, loseRound, winRound, resetStats } = useStatsState();
-
-const matchColor = (selectedColor) => {
-  if (selectedColor.id === color.value.id) {
-    console.log('Nice! Good job 👍');
-    winRound();
-  } else {
-    console.log(`Nope, that's ${selectedColor.name} ❌`);
-    loseRound();
-  }
-  initColor();
-};
+const { color, initColor } = useColorState();
+const { round, score, resetStats } = useStatsState();
 
 const resetGame = () => {
   resetStats();
