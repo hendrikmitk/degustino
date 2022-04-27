@@ -52,9 +52,9 @@
 </template>
 
 <script setup>
-import { useColorState } from '../composables/colorState';
-import { useStatsState } from '../composables/statsState';
-import zeropad from '../functions/zeropad';
+import { useColorState } from '@/composables/colorState';
+import { useStatsState } from '@/composables/statsState';
+import zeropad from '@/functions/zeropad';
 
 const { color } = useColorState();
 const { round, score } = useStatsState();

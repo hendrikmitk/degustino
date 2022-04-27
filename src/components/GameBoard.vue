@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import { useColorState } from '../composables/colorState';
-import { useStatsState } from '../composables/statsState';
+import { useColorState } from '@/composables/colorState';
+import { useStatsState } from '@/composables/statsState';
 
 const { color, shades, initColor } = useColorState();
 const { loseRound, winRound } = useStatsState();

@@ -19,10 +19,10 @@
 
 <script setup>
 import { onBeforeMount } from 'vue';
-import { useColorState } from './composables/colorState';
-import { useStatsState } from './composables/statsState';
-import GameBoard from './components/GameBoard.vue';
-import GameStats from './components/GameStats.vue';
+import { useColorState } from '@/composables/colorState';
+import { useStatsState } from '@/composables/statsState';
+import GameBoard from '@/components/GameBoard.vue';
+import GameStats from '@/components/GameStats.vue';
 
 const { initColor } = useColorState();
 const { resetStats } = useStatsState();

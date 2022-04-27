@@ -1,6 +1,6 @@
 import { readonly, ref } from 'vue';
-import colors from '../data/colors';
-import randomize from '../functions/randomize';
+import colors from '@/data/colors';
+import randomize from '@/functions/randomize';
 
 /* Global state */
 const color = ref(null);
