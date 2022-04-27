@@ -44,14 +44,14 @@
         </div>
         <div class="flex flex-1 flex-col">
           <div class="flex flex-1 items-start justify-between px-8 pt-5">
-            <span class="font-roboto text-3xl">{{ wins }}</span>
+            <span class="font-roboto text-3xl">{{ zeropad(wins, 2) }}</span>
             <span>Score</span>
           </div>
           <div
             class="flex flex-1 items-end justify-between px-8 pb-5 text-gusti-gray-medium"
           >
             <span>Round</span>
-            <span class="font-roboto text-3xl">{{ round }}</span>
+            <span class="font-roboto text-3xl">{{ zeropad(round, 2) }}</span>
           </div>
         </div>
       </div>
@@ -86,6 +86,7 @@
 import { onBeforeMount, ref } from 'vue';
 import colors from './data/colors';
 import randomize from './functions/randomize';
+import zeropad from './functions/zeropad';
 import { useStatsState } from './composables/statsState';
 
 const { round, wins, loseRound, winRound, resetStats } = useStatsState();
