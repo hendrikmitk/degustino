@@ -58,7 +58,7 @@
       <div
         class="rounded-b-xl bg-gusti-orange-medium py-2 text-center text-4xl text-gusti-orange-strong"
       >
-        {{ randomShade.name }}
+        {{ color.name }}
       </div>
     </div>
 
@@ -83,50 +83,32 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from 'vue';
-import colors from './data/colors';
-import randomize from './functions/randomize';
+import { onBeforeMount } from 'vue';
 import zeropad from './functions/zeropad';
+import { useColorState } from './composables/colorState';
 import { useStatsState } from './composables/statsState';
 
+const { color, shades, initColor } = useColorState();
 const { round, score, loseRound, winRound, resetStats } = useStatsState();
-const colorRange = ref(null);
-const shades = ref(null);
-const randomShade = ref(null);
-
-const loadColors = () => {
-  colorRange.value = randomize(colors);
-  shades.value = randomize(colorRange.value.shades, 4);
-  if (!randomShade.value) {
-    randomShade.value = randomize(shades.value);
-    return;
-  }
-
-  let newRandomShade = randomize(shades.value);
-  while (randomShade.value.id === newRandomShade.id) {
-    newRandomShade = randomize(shades.value);
-  }
-  randomShade.value = newRandomShade;
-};
 
 const matchColor = (selectedColor) => {
-  if (selectedColor.id === randomShade.value.id) {
+  if (selectedColor.id === color.value.id) {
     console.log('Nice! Good job 👍');
     winRound();
   } else {
     console.log(`Nope, that's ${selectedColor.name} ❌`);
     loseRound();
   }
-  loadColors();
+  initColor();
 };
 
 const resetGame = () => {
   resetStats();
-  loadColors();
+  initColor();
 };
 
 onBeforeMount(() => {
-  loadColors();
+  initColor();
 });
 
 const radius = 54;
