@@ -44,14 +44,14 @@
         </div>
         <div class="flex flex-1 flex-col">
           <div class="flex flex-1 items-start justify-between px-8 pt-5">
-            <span class="font-roboto text-3xl">03</span>
+            <span class="font-roboto text-3xl">{{ wins }}</span>
             <span>Score</span>
           </div>
           <div
             class="flex flex-1 items-end justify-between px-8 pb-5 text-gusti-gray-medium"
           >
             <span>Round</span>
-            <span class="font-roboto text-3xl">05</span>
+            <span class="font-roboto text-3xl">{{ round }}</span>
           </div>
         </div>
       </div>
@@ -76,6 +76,9 @@
         }}</span>
       </button>
     </div>
+
+    <!-- Reset button -->
+    <span class="text-center" @click="resetGame()"> Reset </span>
   </div>
 </template>
 
@@ -83,7 +86,9 @@
 import { onBeforeMount, ref } from 'vue';
 import colors from './data/colors';
 import randomize from './functions/randomize';
+import { useStatsState } from './composables/statsState';
 
+const { round, wins, loseRound, winRound, resetStats } = useStatsState();
 const colorRange = ref(null);
 const shades = ref(null);
 const randomShade = ref(null);
@@ -106,9 +111,16 @@ const loadColors = () => {
 const matchColor = (selectedColor) => {
   if (selectedColor.id === randomShade.value.id) {
     console.log('Nice! Good job 👍');
+    winRound();
   } else {
     console.log(`Nope, that's ${selectedColor.name} ❌`);
+    loseRound();
   }
+  loadColors();
+};
+
+const resetGame = () => {
+  resetStats();
   loadColors();
 };
 
