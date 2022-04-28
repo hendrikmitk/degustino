@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex min-h-screen flex-col justify-between space-y-4 bg-gusti-orange-light px-6 py-8 font-raleway text-gusti-gray-strong"
+    class="flex min-h-screen flex-col space-y-4 bg-gusti-orange-light px-6 py-8 font-raleway text-gusti-gray-strong"
   >
     <div class="flex flex-col space-y-4">
       <h1 class="text-center text-4xl font-bold text-gusti-orange-strong">
