@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-6">
+  <div class="grid touch-manipulation grid-cols-2 gap-6">
     <button
       v-for="(shade, index) in shades"
       :key="shade.id"
