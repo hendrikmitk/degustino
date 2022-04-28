@@ -1,16 +1,14 @@
 <template>
   <div class="flex items-center justify-center">
-    <svg
-      class="h-28 w-28 -rotate-90 fill-transparent stroke-current stroke-[3]"
-    >
+    <svg class="h-28 w-28 -rotate-90 fill-transparent stroke-[3]">
       <circle
-        class="text-gusti-orange-light"
+        class="stroke-gusti-orange-light"
         :r="radius"
         :cx="radius + 2"
         :cy="radius + 2"
       />
       <circle
-        class="text-gusti-orange-strong"
+        class="stroke-gusti-orange-strong"
         :stroke-dasharray="circumference"
         :stroke-dashoffset="circumference - (percent / 100) * circumference"
         stroke-linecap="round"
