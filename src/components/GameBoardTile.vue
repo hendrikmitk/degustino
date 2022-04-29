@@ -1,5 +1,5 @@
 <template>
-  <button
+  <div
     @click="matchColor(shade)"
     :class="[
       'flex aspect-square items-center justify-center rounded-xl',
@@ -13,7 +13,7 @@
     <span class="text-8xl text-gusti-orange-light">{{
       ['A', 'B', 'C', 'D'][index]
     }}</span>
-  </button>
+  </div>
 </template>
 
 <script setup>
