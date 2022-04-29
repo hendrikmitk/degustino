@@ -38,7 +38,7 @@ const { color, initColor } = useColorState();
 const { isGameOn, startGame, stopGame } = useGameState();
 const { round, score, resetStats } = useStatsState();
 
-const duration = 20; // NOTE: Timer duration (seconds)
+const duration = 60; // NOTE: Timer duration (seconds)
 const percent = ref(0); // NOTE: Circular countdown progress
 const timeLeft = ref(duration);
 
