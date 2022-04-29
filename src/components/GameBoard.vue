@@ -12,7 +12,9 @@
 
 <script setup>
 import { useColorState } from '@/composables/colorState';
+import { useGameState } from '@/composables/gameState';
 import GameBoardTile from '@/components/GameBoardTile.vue';
 
 const { shades } = useColorState();
+const { isBusy } = useGameState();
 </script>
