@@ -3,6 +3,7 @@
     @click="matchColor(shade)"
     :class="[
       'flex aspect-square items-center justify-center rounded-xl',
+      isBusy && 'opacity-90 blur-sm',
       isBusy & (shade.id === color.id) &&
         'opacity-100 ring-6 ring-gusti-success ring-offset-2 blur-none',
     ]"
@@ -26,11 +27,7 @@ const { loseRound, winRound } = useStatsState();
 const matchColor = (selectedColor) => {
   toggleIsBusy();
 
-  if (selectedColor.id === color.value.id) {
-    winRound();
-  } else {
-    loseRound();
-  }
+  selectedColor.id === color.value.id ? winRound() : loseRound();
 
   setTimeout(() => {
     initColor();
