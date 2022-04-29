@@ -12,10 +12,15 @@ module.exports = {
           medium: '#FEDECC',
           strong: '#F67B53',
         },
+        'gusti-error': '#FE0000',
+        'gusti-success': '#00B800',
       },
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
+      },
+      ringWidth: {
+        6: '6px',
       },
     },
   },

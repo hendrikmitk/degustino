@@ -1,7 +1,11 @@
 <template>
   <button
     @click="matchColor(shade)"
-    :class="`flex aspect-square items-center justify-center rounded-xl`"
+    :class="[
+      'flex aspect-square items-center justify-center rounded-xl',
+      isBusy & (shade.id === color.id) &&
+        'opacity-100 ring-6 ring-gusti-success ring-offset-2 blur-none',
+    ]"
     :style="`background-color: ${shade.hex}`"
   >
     <span class="text-8xl text-gusti-orange-light">{{
@@ -12,20 +16,26 @@
 
 <script setup>
 import { useColorState } from '@/composables/colorState';
+import { useGameState } from '@/composables/gameState';
 import { useStatsState } from '@/composables/statsState';
 
 const { color, initColor } = useColorState();
+const { isBusy, toggleIsBusy } = useGameState();
 const { loseRound, winRound } = useStatsState();
 
 const matchColor = (selectedColor) => {
+  toggleIsBusy();
+
   if (selectedColor.id === color.value.id) {
-    console.log('Nice! Good job 👍');
     winRound();
   } else {
-    console.log(`Nope, that's ${selectedColor.name} ❌`);
     loseRound();
   }
-  initColor();
+
+  setTimeout(() => {
+    initColor();
+    toggleIsBusy();
+  }, 600);
 };
 
 defineProps({
