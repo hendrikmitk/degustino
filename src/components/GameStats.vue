@@ -34,7 +34,7 @@ import { useGameState } from '@/composables/gameState';
 import { useStatsState } from '@/composables/statsState';
 import getPercentage from '@/functions/getPercentage';
 
-const { color, initColor } = useColorState();
+const { color, initColor, clearBuffer } = useColorState();
 const { isGameOn, startGame, stopGame } = useGameState();
 const { round, score, resetStats } = useStatsState();
 
@@ -44,6 +44,7 @@ const timeLeft = ref(duration);
 
 const startButtonHandler = () => {
   resetStats();
+  clearBuffer();
   initColor();
   startGame();
 };
