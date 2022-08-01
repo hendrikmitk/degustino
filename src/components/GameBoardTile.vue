@@ -42,7 +42,7 @@ const matchColor = (selectedColor) => {
     initColor();
     miss.value = false;
     toggleIsBusy();
-  }, 600);
+  }, 400);
 };
 
 defineProps({
